@@ -30,8 +30,8 @@
           <h2>Select Category</h2>
 
           <div class="categories">
-            <div class="category-item" onClick="selectCategory('0')">
-              RANDOM
+            <div class="category-item" onClick="selectCategory('0', 'any')">
+              ANY
             </div>
           </div>
         </div>
@@ -42,8 +42,8 @@
           <h2>Select Difficulty</h2>
 
           <div class="difficulty-options">
-            <div class="difficulty-item" onClick="selectDifficulty('random')">
-              RANDOM
+            <div class="difficulty-item" onClick="selectDifficulty('any')">
+              ANY
             </div>
             <div class="difficulty-item" onClick="selectDifficulty('easy')">
               Easy
@@ -58,13 +58,17 @@
         </div>
       </section>
 
-      <section class="section-questions">
+      <section class="section-start">
         <div class="container">
-          <div class="question"></div>
+          <div class="selected-category"></div>
+          <div class="selected-difficulty"></div>
+          <button class="btn-start">Start</button>
+        </div>
+      </section>
 
-          <div class="answers">
-            <div class="answer-item"></div>
-          </div>
+      <section class="section-load">
+        <div class="container">
+          <div class="trivia-container"></div>
         </div>
       </section>
     </main>

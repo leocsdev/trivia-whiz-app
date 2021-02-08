@@ -1,6 +1,13 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
 
+const divSelectedCategory = document.querySelector(".selected-category");
+const divSelectedDifficulty = document.querySelector(".selected-difficulty");
+
+const btnStart = document.querySelector(".btn-start");
+
+const divTriviaContainer = document.querySelector(".trivia-container");
+
 // MODERN WAY OF PROMISES
 async function start() {
   try {
@@ -19,13 +26,13 @@ let APICategory;
 let APIDifficulty;
 let APICall;
 
-// Create category list
+// Create category list and render in HTML
 function createCategoryList(categoryList) {
   categoryList.forEach((category) => {
     divCategories.innerHTML += `
       <div 
         class="category-item" 
-        onClick="selectCategory('${category.id}')"
+        onClick="selectCategory('${category.id}', '${category.name}')"
       >
         ${category.name}
       </div>
@@ -33,12 +40,18 @@ function createCategoryList(categoryList) {
   });
 }
 
-function selectCategory(categoryID) {
+// Select category and render selected
+function selectCategory(categoryID, categoryName) {
+  divSelectedCategory.innerHTML = `SELECTED CATEGORY: ${categoryName.toUpperCase()}`;
+
   console.log(categoryID);
+
   return (APICategory = categoryID);
 }
 
+// Select difficulty and render selected
 function selectDifficulty(difficulty) {
+  divSelectedDifficulty.innerHTML = `SELECTED DIFFICULTY: ${difficulty.toUpperCase()}`;
   console.log(difficulty);
   return (APIDifficulty = difficulty);
 }
@@ -53,7 +66,7 @@ function constructAPICall(APICategory, APIDifficulty) {
     category = `&category=${APICategory}`;
   }
 
-  if (APIDifficulty === "random") {
+  if (APIDifficulty === "any") {
     difficulty = ``;
   } else {
     difficulty = `&difficulty=${APIDifficulty}`;
@@ -64,15 +77,64 @@ function constructAPICall(APICategory, APIDifficulty) {
   return (APICall = `https://opentdb.com/api.php?amount=10${category}${difficulty}&type=multiple`);
 }
 
-// Load Questions
+// Fetch Questions
 async function fetchTrivias(api) {
-  const response = await fetch(api);
-  const data = await response.json();
+  try {
+    const response = await fetch(api);
+    const data = await response.json();
+    renderTrivias(data.results);
+  } catch (e) {
+    console.log("There was a problem fetching trivia questions.");
+  }
+}
 
-  console.log(data.results);
+function renderTrivias(trivias) {
+  // console.log(trivias);
+
+  trivias.forEach((trivia) => {
+    // trivia.category
+    // trivia.correct_answer
+    // trivia.difficulty
+    // trivia.incorrect_answers
+    // trivia.question
+    // trivia.type
+    // console.log(`Question: ${trivia.question}`);
+    // const allAnswers = [trivia.incorrect_answers, trivia.correct_answer];
+
+    // combine all answers
+    const allAnswers = trivia.incorrect_answers.concat(trivia.correct_answer);
+
+    // shuffle all answers
+    shuffle(allAnswers);
+
+    console.log(`${trivia.correct_answer}`);
+
+    divTriviaContainer.innerHTML += `
+      <div class="question">${trivia.question}</div>
+      <br>
+      <ul>
+        <li>${allAnswers[0]}</li>
+        <li>${allAnswers[1]}</li>
+        <li>${allAnswers[2]}</li>
+        <li>${allAnswers[3]}</li>
+        <!-- <li><strong>Answer: ${trivia.correct_answer}</strong></li> -->
+      </ul>
+      
+      <br>
+    `;
+  });
 }
 
 function loadTrivias() {
   constructAPICall(APICategory, APIDifficulty);
   fetchTrivias(APICall);
+}
+
+// Load Questions once Start button is clicked
+btnStart.addEventListener("click", loadTrivias);
+
+// Utility functions
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
 }
