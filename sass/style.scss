@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-size: 18px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+section {
+  padding-top: 75px;
+}
+
+.categories,
+.difficulty-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-item,
+.difficulty-item {
+  display: inline-block;
+  padding: 1rem;
+  margin: 0.5rem;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  cursor: pointer;
+}
