@@ -61,7 +61,18 @@ function constructAPICall(APICategory, APIDifficulty) {
 
   // `https://opentdb.com/api.php?amount=10&category=15&difficulty=easy&type=multiple`
 
-  APICall = `https://opentdb.com/api.php?amount=10${category}${difficulty}&type=multiple`;
+  return (APICall = `https://opentdb.com/api.php?amount=10${category}${difficulty}&type=multiple`);
+}
 
-  console.log(APICall);
+// Load Questions
+async function fetchTrivias(api) {
+  const response = await fetch(api);
+  const data = await response.json();
+
+  console.log(data.results);
+}
+
+function loadTrivias() {
+  constructAPICall(APICategory, APIDifficulty);
+  fetchTrivias(APICall);
 }
