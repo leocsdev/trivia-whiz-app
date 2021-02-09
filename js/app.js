@@ -133,7 +133,7 @@ function renderTrivia(trivia) {
 
   // Render to html
   divTriviaContainer.innerHTML = `
-    <h4>${category.toUpperCase()} - ${difficulty.toUpperCase()}</h4>
+    <h4>${category} (${difficulty.toUpperCase()})</h4>
     <br>
     <p class="question">${question}</p>
     <br>
@@ -162,8 +162,10 @@ function renderTrivia(trivia) {
       let userAnswer = answer.attributes["data-answer"].value;
       console.log(`Selected answer by user: ${userAnswer}`);
 
+      let correctAnswer = decodeHtml(correct_answer);
+
       // Compare user answer to correct answer
-      if (userAnswer === correct_answer) {
+      if (userAnswer === correctAnswer) {
         alert("You are correct!");
 
         // get another trivia
@@ -180,4 +182,10 @@ function renderTrivia(trivia) {
 // Shuffle items in an array
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
+}
+
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }
