@@ -33,6 +33,7 @@ ul.answers {
 }
 
 ul.answers li.select-answer {
+  text-align: center;
   margin: 0.5rem;
   padding: 1rem;
   border: 2px solid #aaa;
