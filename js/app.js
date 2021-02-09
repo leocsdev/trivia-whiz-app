@@ -1,12 +1,22 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
-
 const divSelectedCategory = document.querySelector(".selected-category");
 const divSelectedDifficulty = document.querySelector(".selected-difficulty");
 
 const btnStart = document.querySelector(".btn-start");
 
 const divTriviaContainer = document.querySelector(".trivia-container");
+
+let APICategory;
+let APIDifficulty;
+let APICall;
+
+start();
+
+function loadTrivia() {
+  constructAPICall(APICategory, APIDifficulty);
+  fetchTrivia(APICall);
+}
 
 // MODERN WAY OF PROMISES
 async function start() {
@@ -20,15 +30,10 @@ async function start() {
   }
 }
 
-start();
-
-let APICategory;
-let APIDifficulty;
-let APICall;
-
 // Create category list and render in HTML
 function createCategoryList(categoryList) {
   categoryList.forEach((category) => {
+    // divCategories.innerHTML += `
     divCategories.innerHTML += `
       <div 
         class="category-item" 
@@ -40,12 +45,12 @@ function createCategoryList(categoryList) {
   });
 }
 
-// Select category and render selected
+// Select category and render to html
 function selectCategory(categoryID, categoryName) {
   divSelectedCategory.innerHTML = `SELECTED CATEGORY: ${categoryName.toUpperCase()}`;
-
   console.log(categoryID);
 
+  // Save selected category to global var APICategory
   return (APICategory = categoryID);
 }
 
@@ -53,88 +58,104 @@ function selectCategory(categoryID, categoryName) {
 function selectDifficulty(difficulty) {
   divSelectedDifficulty.innerHTML = `SELECTED DIFFICULTY: ${difficulty.toUpperCase()}`;
   console.log(difficulty);
+
+  // Save selected difficulty to global var APIDifficulty
   return (APIDifficulty = difficulty);
 }
 
-function constructAPICall(APICategory, APIDifficulty) {
+// Construct API call and save API to global var APICall
+function constructAPICall(selectedCategory, selectedDifficulty) {
   let category;
   let difficulty;
 
-  if (APICategory === "0") {
+  if (selectedCategory === "0") {
     category = ``;
   } else {
-    category = `&category=${APICategory}`;
+    category = `&category=${selectedCategory}`;
   }
 
-  if (APIDifficulty === "any") {
+  if (selectedDifficulty === "any") {
     difficulty = ``;
   } else {
-    difficulty = `&difficulty=${APIDifficulty}`;
+    difficulty = `&difficulty=${selectedDifficulty}`;
   }
 
-  // `https://opentdb.com/api.php?amount=10&category=15&difficulty=easy&type=multiple`
+  // `https://opentdb.com/api.php?amount=1&category=15&difficulty=easy&type=multiple`
 
-  return (APICall = `https://opentdb.com/api.php?amount=10${category}${difficulty}&type=multiple`);
+  // Construct API and save it in global variable APICall
+  return (APICall = `https://opentdb.com/api.php?amount=1${category}${difficulty}&type=multiple`);
 }
 
-// Fetch Questions
-async function fetchTrivias(api) {
+// Fetch question via API
+async function fetchTrivia(api) {
   try {
     const response = await fetch(api);
     const data = await response.json();
-    renderTrivias(data.results);
+    renderTrivia(data.results);
   } catch (e) {
     console.log("There was a problem fetching trivia questions.");
+    console.log(`Error: ${e}`);
   }
 }
 
-function renderTrivias(trivias) {
-  // console.log(trivias);
+function renderTrivia(trivia) {
+  // trivia.category
+  // trivia.correct_answer
+  // trivia.difficulty
+  // trivia.incorrect_answers
+  // trivia.question
+  // trivia.type
 
-  trivias.forEach((trivia) => {
-    // trivia.category
-    // trivia.correct_answer
-    // trivia.difficulty
-    // trivia.incorrect_answers
-    // trivia.question
-    // trivia.type
-    // console.log(`Question: ${trivia.question}`);
-    // const allAnswers = [trivia.incorrect_answers, trivia.correct_answer];
+  console.log(trivia);
 
-    // combine all answers
-    const allAnswers = trivia.incorrect_answers.concat(trivia.correct_answer);
+  let {
+    category,
+    difficulty,
+    question,
+    incorrect_answers,
+    correct_answer,
+  } = trivia[0];
 
-    // shuffle all answers
-    shuffle(allAnswers);
+  console.log(`Category: ${category}`);
+  console.log(`Difficulty: ${difficulty}`);
+  console.log(`Question: ${question}`);
+  console.log(
+    `Incorrect Answers: ${incorrect_answers[0]}, ${incorrect_answers[1]}, ${incorrect_answers[2]}`
+  );
+  console.log(`Correct Answer: ${correct_answer}`);
 
-    console.log(`${trivia.correct_answer}`);
+  // Combine and shuffle all answers to new array
+  let allAnswers = incorrect_answers.concat(correct_answer);
 
-    divTriviaContainer.innerHTML += `
-      <div class="question">${trivia.question}</div>
-      <br>
-      <ul>
-        <li>${allAnswers[0]}</li>
-        <li>${allAnswers[1]}</li>
-        <li>${allAnswers[2]}</li>
-        <li>${allAnswers[3]}</li>
-        <!-- <li><strong>Answer: ${trivia.correct_answer}</strong></li> -->
-      </ul>
-      
-      <br>
-    `;
-  });
-}
+  console.log(`Answers BEFORE shuffle: ${allAnswers}`);
 
-function loadTrivias() {
-  constructAPICall(APICategory, APIDifficulty);
-  fetchTrivias(APICall);
+  // Shuffle answers
+  shuffle(allAnswers);
+
+  console.log(`Answers AFTER shuffle: ${allAnswers}`);
+
+  // Render to html
+  divTriviaContainer.innerHTML = `
+    <div>Category: ${category}</div>
+    <div>Difficulty: ${difficulty}</div>
+    <br>
+    <div class="question">${question}</div>
+    <br>
+    <ul>
+      <li data-answer="${allAnswers[0]}">${allAnswers[0]}</li>
+      <li data-answer="${allAnswers[1]}">${allAnswers[1]}</li>
+      <li data-answer="${allAnswers[2]}">${allAnswers[2]}</li>
+      <li data-answer="${allAnswers[3]}">${allAnswers[3]}</li>
+    </ul>
+  `;
 }
 
 // Load Questions once Start button is clicked
-btnStart.addEventListener("click", loadTrivias);
+btnStart.addEventListener("click", loadTrivia);
 
 // Utility functions
 
+// Shuffle items in an array
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
