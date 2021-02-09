@@ -7,8 +7,31 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ul.answers {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  li.select-answer {
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 }
 
 section {

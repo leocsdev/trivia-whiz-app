@@ -99,14 +99,7 @@ async function fetchTrivia(api) {
 }
 
 function renderTrivia(trivia) {
-  // trivia.category
-  // trivia.correct_answer
-  // trivia.difficulty
-  // trivia.incorrect_answers
-  // trivia.question
-  // trivia.type
-
-  console.log(trivia);
+  // console.log(trivia);
 
   let {
     category,
@@ -124,7 +117,7 @@ function renderTrivia(trivia) {
   );
   console.log(`Correct Answer: ${correct_answer}`);
 
-  // Combine and shuffle all answers to new array
+  // Combine all answers to allAnswers array
   let allAnswers = incorrect_answers.concat(correct_answer);
 
   console.log(`Answers BEFORE shuffle: ${allAnswers}`);
@@ -136,16 +129,23 @@ function renderTrivia(trivia) {
 
   // Render to html
   divTriviaContainer.innerHTML = `
-    <div>Category: ${category}</div>
-    <div>Difficulty: ${difficulty}</div>
+    <h4>${category.toUpperCase()} - ${difficulty.toUpperCase()}</h4>
     <br>
-    <div class="question">${question}</div>
+    <p class="question">${question}</p>
     <br>
-    <ul>
-      <li data-answer="${allAnswers[0]}">${allAnswers[0]}</li>
-      <li data-answer="${allAnswers[1]}">${allAnswers[1]}</li>
-      <li data-answer="${allAnswers[2]}">${allAnswers[2]}</li>
-      <li data-answer="${allAnswers[3]}">${allAnswers[3]}</li>
+    <ul class="answers">
+      <li class="select-answer" data-answer="${allAnswers[0]}">${
+    allAnswers[0]
+  }</li>
+      <li class="select-answer" data-answer="${allAnswers[1]}">${
+    allAnswers[1]
+  }</li>
+      <li class="select-answer" data-answer="${allAnswers[2]}">${
+    allAnswers[2]
+  }</li>
+      <li class="select-answer" data-answer="${allAnswers[3]}">${
+    allAnswers[3]
+  }</li>
     </ul>
   `;
 }

@@ -7,8 +7,37 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ul.answers {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ul.answers li.select-answer {
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 section {
