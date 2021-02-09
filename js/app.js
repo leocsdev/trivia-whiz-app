@@ -16,7 +16,11 @@ start();
 function loadTrivia() {
   constructAPICall(APICategory, APIDifficulty);
   fetchTrivia(APICall);
+  // selectAnswer();
 }
+
+// Load Questions once Start button is clicked
+btnStart.addEventListener("click", loadTrivia);
 
 // MODERN WAY OF PROMISES
 async function start() {
@@ -148,10 +152,28 @@ function renderTrivia(trivia) {
   }</li>
     </ul>
   `;
-}
 
-// Load Questions once Start button is clicked
-btnStart.addEventListener("click", loadTrivia);
+  // Add event listeners to all answers in html and get the value
+  const listAnswers = document.querySelectorAll(".select-answer");
+
+  // Check user answer
+  listAnswers.forEach((answer) => {
+    answer.addEventListener("click", function () {
+      let userAnswer = answer.attributes["data-answer"].value;
+      console.log(`Selected answer by user: ${userAnswer}`);
+
+      // Compare user answer to correct answer
+      if (userAnswer === correct_answer) {
+        alert("You are correct!");
+
+        // get another trivia
+        loadTrivia();
+      } else {
+        alert("Incorrect answer, try again.");
+      }
+    });
+  });
+}
 
 // Utility functions
 
