@@ -1,7 +1,10 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
+const divDifficultyOptions = document.querySelector(".section-difficulty");
 const divSelectedCategory = document.querySelector(".selected-category");
 const divSelectedDifficulty = document.querySelector(".selected-difficulty");
+
+const divTrivia = document.querySelector(".section-trivia");
 
 const btnStart = document.querySelector(".btn-start");
 
@@ -17,22 +20,29 @@ let APICategory = "";
 let APIDifficulty = "";
 let APICall = "";
 
-start();
+// Start Game
+document.addEventListener("DOMContentLoaded", startGame);
 
 // Load Questions once Start button is clicked
-btnStart.addEventListener("click", loadTrivia);
+btnStart.addEventListener("click", () => {
+  loadTrivia();
+  divTrivia.style.display = "block";
+});
+
+function startGame() {
+  getCategories();
+  divDifficultyOptions.style.display = "none";
+  divTrivia.style.display = "none";
+  btnStart.style.display = "none";
+}
 
 function loadTrivia() {
   constructAPICall(APICategory, APIDifficulty);
   fetchTrivia(APICall);
-
-  console.log(`APICategory: ${APICategory}`);
-  console.log(`APIDifficulty: ${APIDifficulty}`);
-  console.log(`APICall: ${APICall}`);
 }
 
 // MODERN WAY OF PROMISES
-async function start() {
+async function getCategories() {
   try {
     // await keyword will prevent the code to run until fetch - promise is completed
     const response = await fetch("https://opentdb.com/api_category.php");
@@ -63,8 +73,11 @@ function selectCategory(categoryID, categoryName) {
   divSelectedCategory.innerHTML = `SELECTED CATEGORY: ${categoryName.toUpperCase()}`;
   console.log(categoryID);
 
-  // Save selected category to global var APICategory
-  return (APICategory = categoryID);
+  // Save selected category to global var APICategory and show difficulty options
+  if (categoryID) {
+    divDifficultyOptions.style.display = "block";
+    return (APICategory = categoryID);
+  }
 }
 
 // Select difficulty and render selected
@@ -72,8 +85,11 @@ function selectDifficulty(difficulty) {
   divSelectedDifficulty.innerHTML = `SELECTED DIFFICULTY: ${difficulty.toUpperCase()}`;
   console.log(difficulty);
 
-  // Save selected difficulty to global var APIDifficulty
-  return (APIDifficulty = difficulty);
+  // Save selected difficulty to global var APIDifficulty and show start button
+  if (difficulty) {
+    btnStart.style.display = "block";
+    return (APIDifficulty = difficulty);
+  }
 }
 
 // Construct API call and save API to global var APICall
@@ -112,8 +128,6 @@ async function fetchTrivia(api) {
 }
 
 function renderTrivia(trivia) {
-  // console.log(trivia);
-
   let {
     category,
     difficulty,
@@ -229,7 +243,21 @@ function resetGame() {
   state.score = 0;
   state.wrongAnswers = 0;
 
-  start();
+  APICategory = "";
+  APIDifficulty = "";
+  APICall = "";
+
+  divCategories.innerHTML = `
+    <div class="category-item" onClick="selectCategory('0', 'any')">
+      ANY
+    </div>
+  `;
+
+  divSelectedCategory.innerHTML = "";
+  divSelectedDifficulty.innerHTML = "";
+  divTrivia.style.display = "none";
+
+  startGame();
 }
 
 // Utility functions
