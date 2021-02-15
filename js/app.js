@@ -13,20 +13,23 @@ let state = {
   wrongAnswers: 0,
 };
 
-let APICategory;
-let APIDifficulty;
-let APICall;
+let APICategory = "";
+let APIDifficulty = "";
+let APICall = "";
 
 start();
+
+// Load Questions once Start button is clicked
+btnStart.addEventListener("click", loadTrivia);
 
 function loadTrivia() {
   constructAPICall(APICategory, APIDifficulty);
   fetchTrivia(APICall);
-  // selectAnswer();
-}
 
-// Load Questions once Start button is clicked
-btnStart.addEventListener("click", loadTrivia);
+  console.log(`APICategory: ${APICategory}`);
+  console.log(`APIDifficulty: ${APIDifficulty}`);
+  console.log(`APICall: ${APICall}`);
+}
 
 // MODERN WAY OF PROMISES
 async function start() {
@@ -79,13 +82,13 @@ function constructAPICall(selectedCategory, selectedDifficulty) {
   let difficulty;
 
   if (selectedCategory === "0") {
-    category = ``;
+    category = "";
   } else {
     category = `&category=${selectedCategory}`;
   }
 
   if (selectedDifficulty === "any") {
-    difficulty = ``;
+    difficulty = "";
   } else {
     difficulty = `&difficulty=${selectedDifficulty}`;
   }
@@ -180,6 +183,9 @@ function renderTrivia(trivia) {
 
         // get another trivia
         loadTrivia();
+
+        // Check if user won or lost
+        checkLogic();
       } else {
         // Add 1 to wrong answer if user answer is wrong
         state.wrongAnswers++;
@@ -189,13 +195,44 @@ function renderTrivia(trivia) {
 
         // get another trivia
         loadTrivia();
+
+        // Check if user won or lost
+        checkLogic();
       }
     });
   });
 }
 
-// Utility functions
+function checkLogic() {
+  // Check if user won
+  if (state.score === 10) {
+    // Send message if won
+    console.log("Congrats, you won!");
 
+    // Reset game
+    resetGame();
+  }
+
+  // Check if user won
+  if (state.wrongAnswers === 3) {
+    // Send message if lost
+    console.log("Sorry, you lost.");
+
+    // Reset game
+    resetGame();
+  }
+}
+
+// Reset game
+function resetGame() {
+  // reset state values
+  state.score = 0;
+  state.wrongAnswers = 0;
+
+  start();
+}
+
+// Utility functions
 // Shuffle items in an array
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
