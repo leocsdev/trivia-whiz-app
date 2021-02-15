@@ -7,6 +7,12 @@ const btnStart = document.querySelector(".btn-start");
 
 const divTriviaContainer = document.querySelector(".trivia-container");
 
+// initialize state of the game
+let state = {
+  score: 0,
+  wrongAnswers: 0,
+};
+
 let APICategory;
 let APIDifficulty;
 let APICall;
@@ -166,12 +172,23 @@ function renderTrivia(trivia) {
 
       // Compare user answer to correct answer
       if (userAnswer === correctAnswer) {
+        // add 1 to score if user answer is correct
+        state.score++;
+        console.log(`Score: ${state.score}`);
+
         alert("You are correct!");
 
         // get another trivia
         loadTrivia();
       } else {
+        // Add 1 to wrong answer if user answer is wrong
+        state.wrongAnswers++;
+        console.log(`Wrong answer: ${state.wrongAnswers}`);
+
         alert("Incorrect answer, try again.");
+
+        // get another trivia
+        loadTrivia();
       }
     });
   });
@@ -184,6 +201,7 @@ function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
+// Convert html entities from api to plain html
 function decodeHtml(html) {
   var txt = document.createElement("textarea");
   txt.innerHTML = html;
