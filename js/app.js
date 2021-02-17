@@ -50,21 +50,36 @@ async function getCategories() {
     createCategoryList(data.trivia_categories);
   } catch (e) {
     console.log("There was a problem fetching the category list.");
+    console.log(e);
   }
 }
 
 // Create category list and render in HTML
 function createCategoryList(categoryList) {
-  categoryList.forEach((category) => {
-    // divCategories.innerHTML += `
-    divCategories.innerHTML += `
-      <div 
-        class="category-item" 
-        onClick="selectCategory('${category.id}', '${category.name}')"
-      >
-        ${category.name}
-      </div>
-    `;
+  // categoryList.forEach((category) => {
+  //   divCategories.innerHTML += `
+  //     <div
+  //       class="category-item animate__animated animate__bounceIn"
+  //       onClick="selectCategory('${category.id}', '${category.name}')"
+  //     >
+  //       ${category.name}
+  //     </div>
+  //   `;
+  // });
+
+  categoryList.forEach((category, i) => {
+    // Add delay to each div before rendering
+    setTimeout(() => {
+      const div = document.createElement("div");
+      // div.className = "category-item animate__animated animate__bounceIn";
+      div.className = "category-item animate__animated animate__bounceInDown";
+      div.setAttribute(
+        "onClick",
+        `selectCategory('${category.id}', '${category.name}')`
+      );
+      div.appendChild(document.createTextNode(category.name));
+      divCategories.appendChild(div);
+    }, i * 100);
   });
 }
 
