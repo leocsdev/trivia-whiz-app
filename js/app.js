@@ -70,7 +70,7 @@ function createCategoryList(categoryList) {
 
 // Select category and render to html
 function selectCategory(categoryID, categoryName) {
-  divSelectedCategory.innerHTML = `SELECTED CATEGORY: ${categoryName.toUpperCase()}`;
+  divSelectedCategory.innerHTML = `Selected Category - ${categoryName.toUpperCase()}`;
   console.log(categoryID);
 
   // Save selected category to global var APICategory and show difficulty options
@@ -82,7 +82,7 @@ function selectCategory(categoryID, categoryName) {
 
 // Select difficulty and render selected
 function selectDifficulty(difficulty) {
-  divSelectedDifficulty.innerHTML = `SELECTED DIFFICULTY: ${difficulty.toUpperCase()}`;
+  divSelectedDifficulty.innerHTML = `Selected Difficulty - ${difficulty.toUpperCase()}`;
   console.log(difficulty);
 
   // Save selected difficulty to global var APIDifficulty and show start button
