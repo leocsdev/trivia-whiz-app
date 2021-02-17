@@ -1,6 +1,7 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
 const divDifficultyOptions = document.querySelector(".section-difficulty");
+
 const divSelectedCategory = document.querySelector(".selected-category");
 const divSelectedDifficulty = document.querySelector(".selected-difficulty");
 
@@ -31,6 +32,7 @@ btnStart.addEventListener("click", () => {
 
 function startGame() {
   getCategories();
+
   divDifficultyOptions.style.display = "none";
   divTrivia.style.display = "none";
   btnStart.style.display = "none";
@@ -80,6 +82,17 @@ function createCategoryList(categoryList) {
       div.appendChild(document.createTextNode(category.name));
       divCategories.appendChild(div);
     }, i * 100);
+  });
+}
+
+function handleClickOnCategoryItem() {
+  const categoryItems = document.querySelectorAll(".category-item");
+
+  categoryItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      console.log(`${item.textContent} is clicked`);
+      item.classList.add("selected");
+    });
   });
 }
 
