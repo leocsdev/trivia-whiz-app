@@ -38,11 +38,11 @@ btnStart.addEventListener("click", () => {
 });
 
 function startGame() {
-  getCategories();
-
   divDifficultyOptions.style.display = "none";
   divTrivia.style.display = "none";
   btnStart.style.display = "none";
+
+  getCategories();
 }
 
 function loadTrivia() {
@@ -53,6 +53,8 @@ function loadTrivia() {
 // MODERN WAY OF PROMISES
 async function getCategories() {
   try {
+    // divCategories.innerHTML = `<img src="./images/loading.gif" alt="Loading questions...">`;
+    divCategories.innerHTML = `Fetching Category List...`;
     // await keyword will prevent the code to run until fetch - promise is completed
     const response = await fetch("https://opentdb.com/api_category.php");
     const data = await response.json();
@@ -77,6 +79,13 @@ function createCategoryList(categoryList) {
   // });
 
   categoryList.forEach((category, i) => {
+    divCategories.innerHTML = `
+      <div
+        class="category-item animate__delay-1s animate__animated animate__bounceIn"
+        onClick="selectCategory('0', 'any')"
+      >
+        ANY
+      </div>`;
     // Add delay to each div before rendering
     setTimeout(() => {
       const div = document.createElement("div");

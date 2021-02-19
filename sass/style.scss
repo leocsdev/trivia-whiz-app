@@ -50,6 +50,8 @@ h6 {
 
 .btn-start {
   padding: 1rem 3rem;
+
+  display: none;
 }
 
 p.question {
@@ -268,4 +270,8 @@ section.section-trivia.overlay-is-open .overlay {
 // Blur the background
 section.section-trivia.overlay-is-open .page {
   filter: blur(4px);
+}
+
+.section-trivia {
+  display: none;
 }
