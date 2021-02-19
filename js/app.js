@@ -1,6 +1,7 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
 const divDifficultyOptions = document.querySelector(".section-difficulty");
+const difficultyItems = document.querySelectorAll(".difficulty-item");
 const divSelectedCategory = document.querySelector(".selected-category");
 const divSelectedDifficulty = document.querySelector(".selected-difficulty");
 const divSelection = document.querySelector(".selection");
@@ -179,7 +180,6 @@ function selectDifficulty(difficulty) {
   }
 }
 
-const difficultyItems = document.querySelectorAll(".difficulty-item");
 difficultyItems.forEach((item) => {
   item.addEventListener("click", playClickSound);
   item.addEventListener("mouseenter", playTinkSound);
