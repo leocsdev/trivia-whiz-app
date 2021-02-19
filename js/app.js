@@ -54,7 +54,9 @@ function loadTrivia() {
 async function getCategories() {
   try {
     // divCategories.innerHTML = `<img src="./images/loading.gif" alt="Loading questions...">`;
-    divCategories.innerHTML = `Fetching Category List...`;
+    divCategories.innerHTML = `
+    <img class="mt-5" src="./images/loading.gif" alt="Loading Category List..." style="width: 50px">
+    `;
     // await keyword will prevent the code to run until fetch - promise is completed
     const response = await fetch("https://opentdb.com/api_category.php");
     const data = await response.json();
@@ -115,7 +117,9 @@ function handleClickOnCategoryItem() {
 // Select category and render to html
 function selectCategory(categoryID, categoryName) {
   divSelectedCategory.innerHTML = `
-    <strong>Category - ${categoryName.toUpperCase()}</strong>
+    <p class="my-0 py-0 animate__animated animate__bounceIn">
+      <strong>Category - ${categoryName.toUpperCase()}</strong>
+    </p>
   `;
 
   console.log(categoryID);
@@ -131,7 +135,9 @@ function selectCategory(categoryID, categoryName) {
 function selectDifficulty(difficulty) {
   // <span class="animate__animated animate__bounceIn">
   divSelectedDifficulty.innerHTML = `
-    <strong>Difficulty - ${difficulty.toUpperCase()}</strong>
+    <p class="my-0 py-0 animate__animated animate__bounceIn">
+      <strong>Difficulty - ${difficulty.toUpperCase()}</strong>
+    </p>
   `;
   console.log(difficulty);
 
@@ -168,7 +174,7 @@ function constructAPICall(selectedCategory, selectedDifficulty) {
 // Fetch question via API
 async function fetchTrivia(api) {
   try {
-    divTriviaContainer.innerHTML = `<img src="./images/loading.gif" alt="Loading questions...">`;
+    divTriviaContainer.innerHTML = `<img src="./images/loading.gif" alt="Loading questions..." style="width: 50px">`;
     const response = await fetch(api);
     const data = await response.json();
     renderTrivia(data.results);
