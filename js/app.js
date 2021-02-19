@@ -81,7 +81,7 @@ function createCategoryList(categoryList) {
   categoryList.forEach((category, i) => {
     divCategories.innerHTML = `
       <div
-        class="category-item animate__animated animate__bounceIn"
+        class="category-item animate__animated animate__bounceInDown"
         onClick="selectCategory('0', 'any')"
       >
         ANY
