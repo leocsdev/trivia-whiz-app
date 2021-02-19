@@ -48,6 +48,8 @@ btnAudio.addEventListener("click", () => {
 
 // Load Questions once Start button is clicked
 btnStart.addEventListener("click", () => {
+  playClickSound();
+
   loadTrivia();
 
   // Show trivia section
@@ -108,6 +110,12 @@ function createCategoryList(categoryList) {
       >
         ANY
       </div>`;
+    document
+      .querySelector(".category-item")
+      .addEventListener("mouseenter", playTinkSound);
+    document
+      .querySelector(".category-item")
+      .addEventListener("click", playClickSound);
     // Add delay to each div before rendering
     setTimeout(() => {
       const div = document.createElement("div");
@@ -121,20 +129,21 @@ function createCategoryList(categoryList) {
       div.appendChild(document.createTextNode(category.name));
       divCategories.appendChild(div);
       div.addEventListener("mouseenter", playTinkSound);
+      div.addEventListener("click", playClickSound);
     }, i * 100);
   });
 }
 
-function handleClickOnCategoryItem() {
-  const categoryItems = document.querySelectorAll(".category-item");
+// function handleClickOnCategoryItem() {
+//   const categoryItems = document.querySelectorAll(".category-item");
 
-  categoryItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      console.log(`${item.textContent} is clicked`);
-      item.classList.add("selected");
-    });
-  });
-}
+//   categoryItems.forEach((item) => {
+//     item.addEventListener("click", () => {
+//       console.log(`${item.textContent} is clicked`);
+//       item.classList.add("selected");
+//     });
+//   });
+// }
 
 // Select category and render to html
 function selectCategory(categoryID, categoryName) {
@@ -169,6 +178,12 @@ function selectDifficulty(difficulty) {
     return (APIDifficulty = difficulty);
   }
 }
+
+const difficultyItems = document.querySelectorAll(".difficulty-item");
+difficultyItems.forEach((item) => {
+  item.addEventListener("click", playClickSound);
+  item.addEventListener("mouseenter", playTinkSound);
+});
 
 // Construct API call and save API to global var APICall
 function constructAPICall(selectedCategory, selectedDifficulty) {
@@ -304,6 +319,7 @@ function renderTrivia(trivia) {
       checkLogic();
     });
 
+    answer.addEventListener("click", playClickSound);
     answer.addEventListener("mouseenter", playTinkSound);
   });
 }
@@ -425,9 +441,15 @@ function renderProgressBar() {
 }
 
 function playTinkSound() {
-  // console.log("HOVERED!!!");
   const audio = document.querySelector("#audioTink");
+  // always play from the start to avoid delays
+  audio.currentTime = 0;
+  audio.play();
+  audio.volume = 0.3;
+}
 
+function playClickSound() {
+  const audio = document.querySelector("#audioClick");
   // always play from the start to avoid delays
   audio.currentTime = 0;
   audio.play();
