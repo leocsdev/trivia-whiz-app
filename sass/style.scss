@@ -39,19 +39,21 @@ h6 {
   border: 1px solid #333;
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.15s ease-in;
 
   &:hover {
-    background-color: hotpink;
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    color: #fff;
   }
 }
 
 .btn-start {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 1rem 3rem;
 }
 
-.selected {
-  background-color: hotpink;
+p.question {
+  font-size: 2rem;
 }
 
 ul.answers {
@@ -135,4 +137,123 @@ ul.answers {
 
 .hide {
   display: none;
+}
+
+// Trivia container
+.trivia-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// ------ Progress bar -----
+.progress-container {
+  // height: 20vh;
+  margin-bottom: 2rem;
+
+  .game-progress {
+    // Make a border except the right side
+    border: 1px solid #c7c7c7;
+    border-right: none;
+    width: 100%;
+    position: relative;
+
+    .boxes {
+      display: flex;
+      width: 100%;
+
+      .box {
+        height: 40px;
+        border-right: 1px solid #c7c7c7;
+
+        // Take up 1fr width each
+        flex: 1;
+      }
+    }
+
+    .game-progress-inner {
+      position: absolute;
+      // Use full length by setting top and bottom to 0
+      top: 0;
+      bottom: 0;
+
+      // Use full width
+      width: 100%;
+
+      background-color: #7ecc00;
+      // opacity: 0.57;
+
+      // Re-render the progress inner instead of modifying the width
+      // Set it to 0 and progresses when user gets correct answer
+      transform: scaleX(0);
+
+      // Align the transformed progress inner to the left
+      // first value (center) - controls verical placement
+      // second value (left) - controls horizontal placement
+      transform-origin: center left;
+
+      // Animate transform
+      transition: transform 0.4s ease-out;
+    }
+  }
+}
+
+// OVERLAY
+
+.overlay {
+  // Grab the full screen
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  // Add a semi see-through white background
+  background-color: rgba(255, 255, 255, 0.9);
+
+  // Center overlay content
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Hide overlay, only shows when user wins or lose
+  opacity: 0;
+  visibility: hidden;
+
+  // Animate
+  transition: all 0.33s ease-out;
+  transform: scaleX(1.2);
+
+  .overlay-inner {
+    text-align: center;
+
+    .end-message {
+      font-size: clamp(2rem, 10vw, 5rem);
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .reset-button {
+      font-size: clamp(0.75rem, 2vw, 1.5rem);
+      font-weight: 700;
+      padding: 1rem 2rem;
+      // background-color: #4338e7;
+      color: #fff;
+    }
+  }
+}
+
+// If body has class of overlay-is-open, show overlay
+section.section-trivia.overlay-is-open .overlay {
+  opacity: 1;
+  visibility: visible;
+
+  transform: scaleX(1);
+}
+
+// Blur the background
+section.section-trivia.overlay-is-open .page {
+  filter: blur(4px);
 }

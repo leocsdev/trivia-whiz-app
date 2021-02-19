@@ -26,7 +26,7 @@
   </head>
   <body>
     <main>
-      <section class="pt-5 page">
+      <section class="pt-5 selection page">
         <div class="container">
           <h1 class="text-center animate__animated animate__bounceIn">
             Trivia Whiz
@@ -96,18 +96,59 @@
           </div>
         </div>
 
-        <!-- <div class="slideshow">
+        <!-- BG color animation -->
+        <div class="slideshow">
           <div></div>
           <div></div>
           <div></div>
           <div></div>
           <div></div>
         </div>
-      </section> -->
+      </section>
 
-      <section class="section-trivia page">
-        <div class="container">
+      <section class="section-trivia">
+        <div class="container page">
           <div class="trivia-container"></div>
+
+          <!-- Placeholder for progress bar -->
+          <div class="progress-container">
+            <p class="text-center py-4">
+              You need
+              <span class="points-needed text-success">
+                <strong>10</strong>
+              </span>
+              more points, and are allowed to make
+              <span class="mistakes-allowed text-danger">
+                <strong>2</strong>
+              </span>
+              more mistakes.
+            </p>
+            <div class="game-progress">
+              <div class="boxes">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+              </div>
+
+              <!-- Progress bar green fill animation -->
+              <div class="game-progress-inner"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay">
+          <div class="overlay-inner">
+            <!-- <p>Congrats, You won!</p> -->
+            <p class="end-message"></p>
+            <button class="btn btn-primary reset-button">Start Over</button>
+          </div>
         </div>
       </section>
     </main>

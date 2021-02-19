@@ -1,15 +1,20 @@
 // Target DOMs
 const divCategories = document.querySelector(".categories");
 const divDifficultyOptions = document.querySelector(".section-difficulty");
-
 const divSelectedCategory = document.querySelector(".selected-category");
 const divSelectedDifficulty = document.querySelector(".selected-difficulty");
-
+const divSelection = document.querySelector(".selection");
 const divTrivia = document.querySelector(".section-trivia");
-
 const btnStart = document.querySelector(".btn-start");
-
 const divTriviaContainer = document.querySelector(".trivia-container");
+const progressBar = document.querySelector(".game-progress-inner");
+
+const pointsNeeded = document.querySelector(".points-needed");
+const mistakesAllowed = document.querySelector(".mistakes-allowed");
+
+const endMessage = document.querySelector(".end-message");
+
+const resetButton = document.querySelector(".reset-button");
 
 // initialize state of the game
 let state = {
@@ -27,7 +32,12 @@ document.addEventListener("DOMContentLoaded", startGame);
 // Load Questions once Start button is clicked
 btnStart.addEventListener("click", () => {
   loadTrivia();
+
+  // Show trivia section
   divTrivia.style.display = "block";
+
+  // Hide selection section
+  divSelection.classList.add("hide");
 });
 
 function startGame() {
@@ -192,7 +202,7 @@ function renderTrivia(trivia) {
   divTriviaContainer.innerHTML = `
     <h4>${category} (${difficulty.toUpperCase()})</h4>
     <br>
-    <p class="question">${question}</p>
+    <p class="question text-center">${question}</p>
     <br>
     <ul class="answers">
       <li class="select-answer" data-answer="${allAnswers[0]}">${
@@ -227,26 +237,38 @@ function renderTrivia(trivia) {
         state.score++;
         console.log(`Score: ${state.score}`);
 
-        alert("You are correct!");
+        // alert("You are correct!");
+
+        // Update points needed to win in html
+        pointsNeeded.textContent = 10 - state.score;
 
         // get another trivia
         loadTrivia();
 
-        // Check if user won or lost
-        checkLogic();
+        // Animate progress bar
+        renderProgressBar();
+
+        // // Check if user won or lost
+        // checkLogic();
       } else {
         // Add 1 to wrong answer if user answer is wrong
         state.wrongAnswers++;
         console.log(`Wrong answer: ${state.wrongAnswers}`);
 
-        alert("Incorrect answer, try again.");
+        // Update allowed mistakes in html
+        mistakesAllowed.textContent = 2 - state.wrongAnswers;
+
+        // alert("Incorrect answer, try again.");
 
         // get another trivia
         loadTrivia();
 
-        // Check if user won or lost
-        checkLogic();
+        // // Check if user won or lost
+        // checkLogic();
       }
+
+      // Check if user won or lost
+      checkLogic();
     });
   });
 }
@@ -257,8 +279,20 @@ function checkLogic() {
     // Send message if won
     console.log("Congrats, you won!");
 
-    // Reset game
-    resetGame();
+    // Send message if won
+    endMessage.style.color = `green`;
+    endMessage.textContent = `Congrats! You won.`;
+
+    // Show overlay
+    divTrivia.classList.add("overlay-is-open");
+
+    // Wait for overlay to come out and set focus on reset button
+    setTimeout(() => {
+      resetButton.focus();
+    }, 331);
+
+    // // Reset game
+    // resetGame();
   }
 
   // Check if user won
@@ -266,10 +300,24 @@ function checkLogic() {
     // Send message if lost
     console.log("Sorry, you lost.");
 
-    // Reset game
-    resetGame();
+    // Send message if lost
+    endMessage.style.color = `red`;
+    endMessage.textContent = `Sorry. You lost.`;
+
+    // Show overlay
+    divTrivia.classList.add("overlay-is-open");
+
+    // Wait for overlay to come out and set focus on reset button
+    setTimeout(() => {
+      resetButton.focus();
+    }, 331);
+
+    // // Reset game
+    // resetGame();
   }
 }
+
+resetButton.addEventListener("click", resetGame);
 
 // Reset game
 function resetGame() {
@@ -291,6 +339,13 @@ function resetGame() {
   divSelectedDifficulty.innerHTML = "";
   divTrivia.style.display = "none";
 
+  divSelection.classList.remove("hide");
+
+  // remove overlay
+  divTrivia.classList.remove("overlay-is-open");
+
+  renderProgressBar();
+
   startGame();
 }
 
@@ -305,4 +360,9 @@ function decodeHtml(html) {
   var txt = document.createElement("textarea");
   txt.innerHTML = html;
   return txt.value;
+}
+
+// Progress bar
+function renderProgressBar() {
+  progressBar.style.transform = `scaleX(${state.score / 10})`;
 }

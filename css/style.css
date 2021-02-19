@@ -49,20 +49,23 @@ h6 {
   border: 1px solid #333;
   border-radius: 10px;
   cursor: pointer;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .category-item:hover,
 .difficulty-item:hover {
-  background-color: hotpink;
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  color: #fff;
 }
 
 .btn-start {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 1rem 3rem;
 }
 
-.selected {
-  background-color: hotpink;
+p.question {
+  font-size: 2rem;
 }
 
 ul.answers {
@@ -178,5 +181,119 @@ ul.answers li.select-answer {
 
 .hide {
   display: none;
+}
+
+.trivia-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-container .game-progress {
+  border: 1px solid #c7c7c7;
+  border-right: none;
+  width: 100%;
+  position: relative;
+}
+
+.progress-container .game-progress .boxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.progress-container .game-progress .boxes .box {
+  height: 40px;
+  border-right: 1px solid #c7c7c7;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.progress-container .game-progress .game-progress-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #7ecc00;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.33s ease-out;
+  transition: all 0.33s ease-out;
+  -webkit-transform: scaleX(1.2);
+          transform: scaleX(1.2);
+}
+
+.overlay .overlay-inner {
+  text-align: center;
+}
+
+.overlay .overlay-inner .end-message {
+  font-size: clamp(2rem, 10vw, 5rem);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.overlay .overlay-inner .reset-button {
+  font-size: clamp(0.75rem, 2vw, 1.5rem);
+  font-weight: 700;
+  padding: 1rem 2rem;
+  color: #fff;
+}
+
+section.section-trivia.overlay-is-open .overlay {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+section.section-trivia.overlay-is-open .page {
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
 }
 /*# sourceMappingURL=style.css.map */
