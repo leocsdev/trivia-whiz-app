@@ -37,12 +37,12 @@ btnAudio.addEventListener("click", () => {
   if (audio.paused) {
     audio.volume = 0.3;
     audio.play();
-    icon.classList.remove("fa-volume-up");
-    icon.classList.add("fa-volume-off");
-  } else {
-    audio.pause();
     icon.classList.remove("fa-volume-off");
     icon.classList.add("fa-volume-up");
+  } else {
+    audio.pause();
+    icon.classList.remove("fa-volume-up");
+    icon.classList.add("fa-volume-off");
   }
   btnAudio.classList.add("fade");
 });
