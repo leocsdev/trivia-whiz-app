@@ -251,39 +251,55 @@ function renderTrivia(trivia) {
         console.log(`Score: ${state.score}`);
 
         // alert("You are correct!");
+        confirmAnswer("correct");
 
         // Update points needed to win in html
         pointsNeeded.textContent = 10 - state.score;
 
-        // get another trivia
-        loadTrivia();
-
         // Animate progress bar
         renderProgressBar();
 
-        // // Check if user won or lost
-        // checkLogic();
+        // get another trivia
+        // loadTrivia();
+        setTimeout(loadTrivia, 2000);
       } else {
         // Add 1 to wrong answer if user answer is wrong
         state.wrongAnswers++;
         console.log(`Wrong answer: ${state.wrongAnswers}`);
 
+        // alert("Incorrect answer, try again.");
+        confirmAnswer("incorrect");
+
         // Update allowed mistakes in html
         mistakesAllowed.textContent = 2 - state.wrongAnswers;
 
-        // alert("Incorrect answer, try again.");
-
         // get another trivia
-        loadTrivia();
-
-        // // Check if user won or lost
-        // checkLogic();
+        // loadTrivia();
+        setTimeout(loadTrivia, 2000);
       }
 
       // Check if user won or lost
       checkLogic();
     });
   });
+}
+
+function confirmAnswer(answerStatus) {
+  if (answerStatus === "correct" && state.score <= 9) {
+    divTriviaContainer.innerHTML = `
+      <p class="display-4 text-success animate__animated animate__bounceIn">
+        <strong>YOU ARE CORRECT!<strong>
+      </p>
+    `;
+  }
+
+  if (answerStatus === "incorrect" && state.wrongAnswers <= 2) {
+    divTriviaContainer.innerHTML = `
+      <p class="display-4 text-danger animate__animated animate__bounceIn">
+        <strong>INCORRECT ANSWER!</strong>
+      </p>
+    `;
+  }
 }
 
 function checkLogic() {

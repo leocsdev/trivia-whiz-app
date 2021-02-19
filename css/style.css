@@ -59,6 +59,10 @@ h6 {
   color: #fff;
 }
 
+.section-start p {
+  font-size: 1.5rem;
+}
+
 .btn-start {
   padding: 1rem 3rem;
   display: none;
