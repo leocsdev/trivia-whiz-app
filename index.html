@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <!-- BS CSS -->
     <link
       rel="stylesheet"
@@ -26,6 +32,13 @@
   </head>
   <body>
     <main>
+      <audio
+        src="./sounds/Mark_Dawson_Playing_Ping_Pong_In_The_Dark.mp3"
+      ></audio>
+      <button id="btnAudio">
+        <i id="iconAudio" class="fa fa-volume-up"></i>
+      </button>
+
       <section class="pt-5 selection page">
         <div class="container">
           <h1 class="text-center animate__animated animate__bounceIn">
@@ -41,14 +54,7 @@
               Select Category
             </h2>
 
-            <div class="categories">
-              <!-- <div
-                class="category-item animate__delay-1s animate__animated animate__bounceIn"
-                onClick="selectCategory('0', 'any')"
-              > 
-                ANY
-              </div> -->
-            </div>
+            <div class="categories"></div>
           </div>
         </div>
 

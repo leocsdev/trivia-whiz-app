@@ -13,6 +13,11 @@ const mistakesAllowed = document.querySelector(".mistakes-allowed");
 const endMessage = document.querySelector(".end-message");
 const resetButton = document.querySelector(".reset-button");
 
+// AUDIO
+const btnAudio = document.querySelector("#btnAudio");
+const icon = document.querySelector("#iconAudio");
+const audio = document.querySelector("audio");
+
 // initialize state of the game
 let state = {
   score: 0,
@@ -25,6 +30,21 @@ let APICall = "";
 
 // Start Game
 document.addEventListener("DOMContentLoaded", startGame);
+
+// Audio button
+btnAudio.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.volume = 0.3;
+    audio.play();
+    icon.classList.remove("fa-volume-up");
+    icon.classList.add("fa-volume-off");
+  } else {
+    audio.pause();
+    icon.classList.remove("fa-volume-off");
+    icon.classList.add("fa-volume-up");
+  }
+  btnAudio.classList.add("fade");
+});
 
 // Load Questions once Start button is clicked
 btnStart.addEventListener("click", () => {

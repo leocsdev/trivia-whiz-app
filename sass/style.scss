@@ -290,3 +290,37 @@ section.section-trivia.overlay-is-open .page {
 .section-trivia {
   display: none;
 }
+
+audio {
+  display: none;
+}
+
+button#btnAudio {
+  font-size: 16px;
+  color: #eee;
+  position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  width: 50px;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  background: rgba(0, 0, 0, 0.3);
+  // box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  opacity: 0.8;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+}
+
+button#btnAudio.fade:hover {
+  opacity: 0.8;
+}
+
+.fade {
+  opacity: 0.2;
+  // top: 0;
+  // left: 0;
+  transform: translate(0, 0);
+}

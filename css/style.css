@@ -328,4 +328,34 @@ section.section-trivia.overlay-is-open .page {
 .section-trivia {
   display: none;
 }
+
+audio {
+  display: none;
+}
+
+button#btnAudio {
+  font-size: 16px;
+  color: #eee;
+  position: absolute;
+  width: 50px;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+}
+
+button#btnAudio.fade:hover {
+  opacity: 0.8;
+}
+
+.fade {
+  opacity: 0.2;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
 /*# sourceMappingURL=style.css.map */
