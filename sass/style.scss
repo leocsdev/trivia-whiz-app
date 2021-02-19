@@ -36,14 +36,14 @@ h6 {
   display: inline-block;
   padding: 0.5rem 1rem;
   margin: 0.25rem;
-  border: 1px solid #333;
+  border: 2px solid #777;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.15s ease-in;
 
   &:hover {
     background-color: #28a745;
-    border: 1px solid #28a745;
+    border: 2px solid #28a745;
     color: #fff;
   }
 }
@@ -66,9 +66,17 @@ ul.answers {
     text-align: center;
     margin: 0.5rem;
     padding: 1rem;
+    font-size: 1.25rem;
     border: 2px solid #aaa;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 0.15s ease-in;
+
+    &:hover {
+      background-color: #28a745;
+      border: 2px solid #28a745;
+      color: #fff;
+    }
   }
 }
 
@@ -90,7 +98,7 @@ ul.answers {
     top: 0;
     left: 0;
     opacity: 0;
-    animation: bgColorAnimation 25s linear infinite;
+    animation: bgColorAnimation 15s linear infinite;
 
     &:nth-child(1) {
       background-color: rgba(255, 0, 0, 0.25);
@@ -98,22 +106,22 @@ ul.answers {
 
     &:nth-child(2) {
       background-color: rgba(255, 165, 0, 0.25);
-      animation-delay: 5s;
+      animation-delay: 3s;
     }
 
     &:nth-child(3) {
       background-color: rgba(255, 255, 0, 0.25);
-      animation-delay: 10s;
+      animation-delay: 6s;
     }
 
     &::nth-child(4) {
       background-color: rgba(0, 128, 0, 0.25);
-      animation-delay: 15s;
+      animation-delay: 9s;
     }
 
     &:nth-child(5) {
       background-color: rgba(0, 0, 255, 0.25);
-      animation-delay: 20s;
+      animation-delay: 12s;
     }
   }
 }
@@ -152,6 +160,10 @@ ul.answers {
 .progress-container {
   // height: 20vh;
   margin-bottom: 2rem;
+
+  p {
+    font-size: 1.5rem;
+  }
 
   .game-progress {
     // Make a border except the right side

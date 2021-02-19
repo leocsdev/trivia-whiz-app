@@ -8,12 +8,9 @@ const divTrivia = document.querySelector(".section-trivia");
 const btnStart = document.querySelector(".btn-start");
 const divTriviaContainer = document.querySelector(".trivia-container");
 const progressBar = document.querySelector(".game-progress-inner");
-
 const pointsNeeded = document.querySelector(".points-needed");
 const mistakesAllowed = document.querySelector(".mistakes-allowed");
-
 const endMessage = document.querySelector(".end-message");
-
 const resetButton = document.querySelector(".reset-button");
 
 // initialize state of the game
@@ -338,6 +335,10 @@ function resetGame() {
   divSelectedCategory.innerHTML = "";
   divSelectedDifficulty.innerHTML = "";
   divTrivia.style.display = "none";
+
+  // reset html values
+  pointsNeeded.textContent = 10;
+  mistakesAllowed.textContent = 2;
 
   divSelection.classList.remove("hide");
 

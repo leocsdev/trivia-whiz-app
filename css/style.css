@@ -46,7 +46,7 @@ h6 {
   display: inline-block;
   padding: 0.5rem 1rem;
   margin: 0.25rem;
-  border: 1px solid #333;
+  border: 2px solid #777;
   border-radius: 10px;
   cursor: pointer;
   -webkit-transition: all 0.15s ease-in;
@@ -56,7 +56,7 @@ h6 {
 .category-item:hover,
 .difficulty-item:hover {
   background-color: #28a745;
-  border: 1px solid #28a745;
+  border: 2px solid #28a745;
   color: #fff;
 }
 
@@ -85,9 +85,18 @@ ul.answers li.select-answer {
   text-align: center;
   margin: 0.5rem;
   padding: 1rem;
+  font-size: 1.25rem;
   border: 2px solid #aaa;
   border-radius: 10px;
   cursor: pointer;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+
+ul.answers li.select-answer:hover {
+  background-color: #28a745;
+  border: 2px solid #28a745;
+  color: #fff;
 }
 
 .slideshow {
@@ -109,8 +118,8 @@ ul.answers li.select-answer {
   top: 0;
   left: 0;
   opacity: 0;
-  -webkit-animation: bgColorAnimation 25s linear infinite;
-          animation: bgColorAnimation 25s linear infinite;
+  -webkit-animation: bgColorAnimation 15s linear infinite;
+          animation: bgColorAnimation 15s linear infinite;
 }
 
 .slideshow div:nth-child(1) {
@@ -119,26 +128,26 @@ ul.answers li.select-answer {
 
 .slideshow div:nth-child(2) {
   background-color: rgba(255, 165, 0, 0.25);
-  -webkit-animation-delay: 5s;
-          animation-delay: 5s;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
 }
 
 .slideshow div:nth-child(3) {
   background-color: rgba(255, 255, 0, 0.25);
-  -webkit-animation-delay: 10s;
-          animation-delay: 10s;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
 }
 
 .slideshow div::nth-child(4) {
   background-color: rgba(0, 128, 0, 0.25);
-  -webkit-animation-delay: 15s;
-          animation-delay: 15s;
+  -webkit-animation-delay: 9s;
+          animation-delay: 9s;
 }
 
 .slideshow div:nth-child(5) {
   background-color: rgba(0, 0, 255, 0.25);
-  -webkit-animation-delay: 20s;
-          animation-delay: 20s;
+  -webkit-animation-delay: 12s;
+          animation-delay: 12s;
 }
 
 @-webkit-keyframes bgColorAnimation {
@@ -204,6 +213,10 @@ ul.answers li.select-answer {
 
 .progress-container {
   margin-bottom: 2rem;
+}
+
+.progress-container p {
+  font-size: 1.5rem;
 }
 
 .progress-container .game-progress {
