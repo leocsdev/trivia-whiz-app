@@ -159,6 +159,7 @@ function constructAPICall(selectedCategory, selectedDifficulty) {
 // Fetch question via API
 async function fetchTrivia(api) {
   try {
+    divTriviaContainer.innerHTML = `<img src="./images/loading.gif" alt="Loading questions...">`;
     const response = await fetch(api);
     const data = await response.json();
     renderTrivia(data.results);
