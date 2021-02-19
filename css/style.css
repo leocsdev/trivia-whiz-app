@@ -12,26 +12,16 @@ h6 {
   font-weight: 700;
 }
 
-ul.answers {
-  list-style-type: none;
+.page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-ul.answers li.select-answer {
-  text-align: center;
-  margin: 0.5rem;
-  padding: 1rem;
-  border: 2px solid #aaa;
-  border-radius: 10px;
-  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .categories,
@@ -54,9 +44,9 @@ ul.answers li.select-answer {
 .category-item,
 .difficulty-item {
   display: inline-block;
-  padding: 1rem;
-  margin: 0.5rem;
-  border: 2px solid #aaa;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  border: 1px solid #333;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -66,7 +56,127 @@ ul.answers li.select-answer {
   background-color: hotpink;
 }
 
+.btn-start {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .selected {
   background-color: hotpink;
+}
+
+ul.answers {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ul.answers li.select-answer {
+  text-align: center;
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.slideshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-animation: bgColorAnimation 25s linear infinite;
+          animation: bgColorAnimation 25s linear infinite;
+}
+
+.slideshow div:nth-child(1) {
+  background-color: rgba(255, 0, 0, 0.25);
+}
+
+.slideshow div:nth-child(2) {
+  background-color: rgba(255, 165, 0, 0.25);
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+.slideshow div:nth-child(3) {
+  background-color: rgba(255, 255, 0, 0.25);
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+.slideshow div:nth-child(4) {
+  background-color: rgba(0, 128, 0, 0.25);
+  -webkit-animation-delay: 15s;
+          animation-delay: 15s;
+}
+
+.slideshow div:nth-child(5) {
+  background-color: rgba(0, 0, 255, 0.25);
+  -webkit-animation-delay: 20s;
+          animation-delay: 20s;
+}
+
+@-webkit-keyframes bgColorAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+@keyframes bgColorAnimation {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

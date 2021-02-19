@@ -25,70 +25,87 @@
     <title>Trivia Whiz</title>
   </head>
   <body>
-    <header class="mt-5">
-      <div class="container">
-        <h1 class="text-center animate__animated animate__bounceIn">
-          Trivia Whiz
-        </h1>
-      </div>
-    </header>
-
     <main>
-      <section class="section-categories">
+      <section class="pt-5 page">
         <div class="container">
-          <h2
-            class="my-4 text-center animate__delay-1s animate__animated animate__bounceIn"
-          >
-            Select Category
-          </h2>
+          <h1 class="text-center animate__animated animate__bounceIn">
+            Trivia Whiz
+          </h1>
+        </div>
 
-          <div class="categories">
-            <div
-              class="category-item animate__delay-1s animate__animated animate__bounceIn"
-              onClick="selectCategory('0', 'any')"
+        <div class="section-categories">
+          <div class="container">
+            <h2
+              class="my-4 text-center animate__delay-1s animate__animated animate__bounceIn"
             >
-              ANY
+              Select Category
+            </h2>
+
+            <div class="categories">
+              <div
+                class="category-item animate__delay-1s animate__animated animate__bounceIn"
+                onClick="selectCategory('0', 'any')"
+              >
+                ANY
+              </div>
             </div>
           </div>
-
-          <!-- <div class="selected-category"></div> -->
         </div>
-      </section>
 
-      <section class="section-difficulty animate__animated animate__bounceIn">
-        <div class="container">
-          <h2 class="text-center">Select Difficulty</h2>
-
-          <div class="difficulty-options">
-            <div class="difficulty-item" onClick="selectDifficulty('any')">
-              ANY
-            </div>
-            <div class="difficulty-item" onClick="selectDifficulty('easy')">
-              Easy
-            </div>
-            <div class="difficulty-item" onClick="selectDifficulty('medium')">
-              Medium
-            </div>
-            <div class="difficulty-item" onClick="selectDifficulty('hard')">
-              Hard
-            </div>
-          </div>
-
-          <!-- <div class="selected-difficulty"></div> -->
-        </div>
-      </section>
-
-      <section class="text-center section-start">
         <div
-          class="container d-flex flex-column justify-content-center align-items-center"
+          class="mt-5 section-difficulty animate__animated animate__bounceIn"
         >
-          <div class="selected-category"></div>
-          <div class="selected-difficulty"></div>
-          <button class="btn btn-success btn-lg btn-start">Start</button>
+          <div class="container">
+            <h2 class="text-center">Select Difficulty</h2>
+
+            <div class="difficulty-options">
+              <div class="difficulty-item" onClick="selectDifficulty('any')">
+                ANY
+              </div>
+              <div class="difficulty-item" onClick="selectDifficulty('easy')">
+                Easy
+              </div>
+              <div class="difficulty-item" onClick="selectDifficulty('medium')">
+                Medium
+              </div>
+              <div class="difficulty-item" onClick="selectDifficulty('hard')">
+                Hard
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="mt-5 text-center section-start">
+          <div
+            class="container d-flex flex-column justify-content-center align-items-center"
+          >
+            <div
+              class="selected-category animate__animated animate__bounceIn"
+            ></div>
+
+            <div
+              class="selected-difficulty animate__animated animate__bounceIn"
+            ></div>
+
+            <button class="mt-4 btn btn-success btn-lg btn-start">
+              <strong
+                class="animate__animated animate__flash animate__slow animate__infinite"
+                >START</strong
+              >
+            </button>
+          </div>
+        </div>
+
+        <!-- <div class="slideshow">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div> -->
       </section>
 
-      <section class="section-trivia">
+      <section class="section-trivia page">
         <div class="container">
           <div class="trivia-container"></div>
         </div>

@@ -98,7 +98,10 @@ function handleClickOnCategoryItem() {
 
 // Select category and render to html
 function selectCategory(categoryID, categoryName) {
-  divSelectedCategory.innerHTML = `Selected Category - ${categoryName.toUpperCase()}`;
+  divSelectedCategory.innerHTML = `
+    <strong>Category - ${categoryName.toUpperCase()}</strong>
+  `;
+
   console.log(categoryID);
 
   // Save selected category to global var APICategory and show difficulty options
@@ -110,7 +113,10 @@ function selectCategory(categoryID, categoryName) {
 
 // Select difficulty and render selected
 function selectDifficulty(difficulty) {
-  divSelectedDifficulty.innerHTML = `Selected Difficulty - ${difficulty.toUpperCase()}`;
+  // <span class="animate__animated animate__bounceIn">
+  divSelectedDifficulty.innerHTML = `
+    <strong>Difficulty - ${difficulty.toUpperCase()}</strong>
+  `;
   console.log(difficulty);
 
   // Save selected difficulty to global var APIDifficulty and show start button
