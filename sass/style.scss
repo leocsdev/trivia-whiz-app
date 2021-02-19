@@ -61,10 +61,16 @@ p.question {
 ul.answers {
   list-style-type: none;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
   li.select-answer {
+    width: 100%;
     text-align: center;
     margin: 0.5rem;
     padding: 1rem;
