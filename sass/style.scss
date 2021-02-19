@@ -2,6 +2,7 @@
 
 body {
   font-family: "Montserrat", sans-serif;
+  margin: 1rem;
 }
 h1,
 h2,
@@ -15,7 +16,7 @@ h6 {
 .page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 95vh;
   // overflow: hidden;
 }
 

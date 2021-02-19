@@ -83,7 +83,7 @@ function createCategoryList(categoryList) {
   categoryList.forEach((category, i) => {
     divCategories.innerHTML = `
       <div
-        class="category-item animate__animated animate__bounceInDown"
+        class="category-item text-center animate__animated animate__bounceInDown"
         onClick="selectCategory('0', 'any')"
       >
         ANY
@@ -92,7 +92,8 @@ function createCategoryList(categoryList) {
     setTimeout(() => {
       const div = document.createElement("div");
       // div.className = "category-item animate__animated animate__bounceIn";
-      div.className = "category-item animate__animated animate__bounceInDown";
+      div.className =
+        "category-item text-center animate__animated animate__bounceInDown";
       div.setAttribute(
         "onClick",
         `selectCategory('${category.id}', '${category.name}')`
@@ -213,7 +214,7 @@ function renderTrivia(trivia) {
 
   // Render to html
   divTriviaContainer.innerHTML = `
-    <h5>${category} (${difficulty.toUpperCase()})</h5>
+    <h5 class="text-center">${category} (${difficulty.toUpperCase()})</h5>
     
     <p class="question text-center py-4 my-0">${question}</p>
     <br>
@@ -287,7 +288,7 @@ function renderTrivia(trivia) {
 function confirmAnswer(answerStatus) {
   if (answerStatus === "correct" && state.score <= 9) {
     divTriviaContainer.innerHTML = `
-      <p class="display-4 text-success animate__animated animate__bounceIn">
+      <p class="display-4 text-center text-success animate__animated animate__bounceIn">
         <strong>YOU ARE CORRECT!<strong>
       </p>
     `;
@@ -295,7 +296,7 @@ function confirmAnswer(answerStatus) {
 
   if (answerStatus === "incorrect" && state.wrongAnswers <= 2) {
     divTriviaContainer.innerHTML = `
-      <p class="display-4 text-danger animate__animated animate__bounceIn">
+      <p class="display-4 text-center text-danger animate__animated animate__bounceIn">
         <strong>INCORRECT ANSWER!</strong>
       </p>
     `;

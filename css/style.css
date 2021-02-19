@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 body {
   font-family: "Montserrat", sans-serif;
+  margin: 1rem;
 }
 
 h1,
@@ -20,7 +21,7 @@ h6 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100vh;
+  min-height: 95vh;
 }
 
 .categories,
