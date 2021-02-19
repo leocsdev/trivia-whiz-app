@@ -95,6 +95,7 @@ ul.answers li.select-answer {
   margin: 0.5rem;
   padding: 1rem;
   font-size: 1.25rem;
+  font-weight: bold;
   border: 2px solid #aaa;
   border-radius: 10px;
   cursor: pointer;

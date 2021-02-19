@@ -213,9 +213,9 @@ function renderTrivia(trivia) {
 
   // Render to html
   divTriviaContainer.innerHTML = `
-    <h4>${category} (${difficulty.toUpperCase()})</h4>
-    <br>
-    <p class="question text-center">${question}</p>
+    <h5>${category} (${difficulty.toUpperCase()})</h5>
+    
+    <p class="question text-center py-4 my-0">${question}</p>
     <br>
     <ul class="answers">
       <li class="select-answer" data-answer="${allAnswers[0]}">${
