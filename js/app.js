@@ -120,6 +120,7 @@ function createCategoryList(categoryList) {
       );
       div.appendChild(document.createTextNode(category.name));
       divCategories.appendChild(div);
+      div.addEventListener("mouseenter", playTinkSound);
     }, i * 100);
   });
 }
@@ -259,7 +260,7 @@ function renderTrivia(trivia) {
 
   // Check user answer
   listAnswers.forEach((answer) => {
-    answer.addEventListener("click", function () {
+    answer.addEventListener("click", () => {
       let userAnswer = answer.attributes["data-answer"].value;
       console.log(`Selected answer by user: ${userAnswer}`);
 
@@ -302,6 +303,8 @@ function renderTrivia(trivia) {
       // Check if user won or lost
       checkLogic();
     });
+
+    answer.addEventListener("mouseenter", playTinkSound);
   });
 }
 
@@ -419,4 +422,14 @@ function decodeHtml(html) {
 // Progress bar
 function renderProgressBar() {
   progressBar.style.transform = `scaleX(${state.score / 10})`;
+}
+
+function playTinkSound() {
+  // console.log("HOVERED!!!");
+  const audio = document.querySelector("#audioTink");
+
+  // always play from the start to avoid delays
+  audio.currentTime = 0;
+  audio.play();
+  audio.volume = 0.3;
 }
