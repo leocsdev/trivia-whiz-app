@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", startGame);
 btnAudio.addEventListener("click", () => {
   if (audio.paused) {
     audio.volume = 0.3;
+    audio.loop = true;
     audio.play();
     icon.classList.remove("fa-volume-off");
     icon.classList.add("fa-volume-up");
